@@ -5,20 +5,15 @@ import { prerelease } from 'vite-plugin-prerelease'
 
 // https://vitejs.dev/config/
 export default defineConfig((env) => {
-  return preset(
-    {
-      env,
-      base: '/vite-plugin-prerelease/',
-      plugins: [
-        prerelease(),
-        istanbulWidget({
-          enabled: false,
-          istanbulWidgetConfig: {},
-        }),
-      ],
-    },
-    {
-      legacy: true,
-    },
-  )
+  return preset({
+    env,
+    base: '/vite-plugin-prerelease/',
+    plugins: [
+      prerelease(),
+      istanbulWidget({
+        enabled: false,
+        istanbulWidgetConfig: {},
+      }),
+    ],
+  })
 })

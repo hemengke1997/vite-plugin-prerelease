@@ -23,21 +23,36 @@ export function transformHtml(originHtml: string, prereleaseHtml: string) {
     $(el).remove()
   })
 
-  const createInsertScript = (dynamicTags: Element[]) => {
-    return dynamicTags.map((e) => ({
-      ...e.attribs,
-      'data-tag': e.tagName,
-    }))
+  const createInsertScript = (
+    dynamicTags: Element[],
+  ): {
+    attribs: {
+      [name: string]: string
+    }
+    tag: string
+    children: string | null
+  }[] => {
+    return dynamicTags.map((e) => {
+      return {
+        attribs: e.attribs,
+        tag: e.tagName,
+        children: $(e).html(),
+      }
+    })
   }
 
   const code = /* js */ `
     !(function() {
-      function insertTags(attrs) {
-        attrs.forEach((attr) => {
-          const element = document.createElement(attr['data-tag'])
-          for (const key in attr) {
-            element.setAttribute(key, attr[key])
+      function insertTags(tags) {
+        tags.forEach(({ attribs, tag, children }) => {
+          const element = document.createElement(tag)
+          for (const key in attribs) {
+            element.setAttribute(key, attribs[key])
           }
+          if(children) {
+            element.innerHTML = children
+          }
+
           document.head.appendChild(element)
         })
       }

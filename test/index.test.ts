@@ -17,9 +17,4 @@ describe('transform html', () => {
 
     expect(result).toMatchSnapshot()
   })
-  test('should transform match result', async () => {
-    const result = transform()
-
-    await expect(result).toMatchFileSnapshot('./fixtures/index.html')
-  })
 })

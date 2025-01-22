@@ -160,6 +160,7 @@ export function prerelease(options?: Options): any {
         plugins: [
           {
             name: 'vite:plugin-prerelease-html',
+            enforce: 'post',
             transformIndexHtml: {
               order: 'post',
               handler(html) {
