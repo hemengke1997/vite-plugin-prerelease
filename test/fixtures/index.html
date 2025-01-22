@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vite-plugin-prerelease</title>
+  <script type="module">import.meta.url; import("_").catch(() => 1); (async function* () { })().next(); if (location.protocol != "file:") { window.__vite_is_modern_browser = true }</script>
+  <script type="module">!function () { if (window.__vite_is_modern_browser) return; console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored"); var e = document.getElementById("vite-legacy-polyfill"), n = document.createElement("script"); n.src = e.src, n.onload = function () { System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src')) }, document.body.appendChild(n) }();</script>
+</head>
+<body>
+  <div id="root"></div>
+  <script nomodule="">!function () { var e = document, t = e.createElement("script"); if (!("noModule" in t) && "onbeforeload" in t) { var n = !1; e.addEventListener("beforeload", (function (e) { if (e.target === t) n = !0; else if (!e.target.hasAttribute("nomodule") || !n) return; e.preventDefault() }), !0), t.type = "module", t.src = ".", e.head.appendChild(t), t.remove() } }();</script>
+</body><script>
+    !(function() {
+      function insertTags(attrs) {
+        attrs.forEach((attr) => {
+          const element = document.createElement(attr['data-tag'])
+          for (const key in attr) {
+            element.setAttribute(key, attr[key])
+          }
+          document.head.appendChild(element)
+        })
+      }
+      const isPrerelease = window.Cookies.get('prerelease') === 'true'
+      const attrs = isPrerelease ? [{"type":"module","crossorigin":"","src":"/vite-plugin-prerelease/prerelease/assets/js/polyfills-DlnDHItd.js","data-tag":"script"},{"type":"module","crossorigin":"","src":"/vite-plugin-prerelease/prerelease/assets/js/index-D3bJ_PZJ.js","data-tag":"script"},{"nomodule":"","crossorigin":"","id":"vite-legacy-polyfill","src":"/vite-plugin-prerelease/prerelease/assets/js/polyfills-legacy-B7oU9mq8.js","data-tag":"script"},{"rel":"icon","type":"image/svg+xml","href":"/vite-plugin-prerelease/prerelease/vite.svg","data-tag":"link"},{"rel":"stylesheet","crossorigin":"","href":"/vite-plugin-prerelease/prerelease/assets/css/index-Cx8BHIrc.css","data-tag":"link"},{"nomodule":"","crossorigin":"","id":"vite-legacy-entry","data-src":"/vite-plugin-prerelease/prerelease/assets/js/index-legacy-BzAYR8n5.js","data-tag":"script"},{"data-log-time":"","data-tag":"script"}] : [{"type":"module","crossorigin":"","src":"/vite-plugin-prerelease/assets/js/polyfills-Cxu7lcET.js","data-tag":"script"},{"type":"module","crossorigin":"","src":"/vite-plugin-prerelease/assets/js/index-KsqBbYBB.js","data-tag":"script"},{"nomodule":"","crossorigin":"","id":"vite-legacy-polyfill","src":"/vite-plugin-prerelease/assets/js/polyfills-legacy-XqQan7A1.js","data-tag":"script"},{"rel":"icon","type":"image/svg+xml","href":"/vite-plugin-prerelease/vite.svg","data-tag":"link"},{"rel":"stylesheet","crossorigin":"","href":"/vite-plugin-prerelease/assets/css/index-ZB8290Ql.css","data-tag":"link"},{"nomodule":"","crossorigin":"","id":"vite-legacy-entry","data-src":"/vite-plugin-prerelease/assets/js/index-legacy-Loeqjk_U.js","data-tag":"script"},{"data-log-time":"","data-tag":"script"}]
+      insertTags(attrs)
+    })()
+  </script></html>
