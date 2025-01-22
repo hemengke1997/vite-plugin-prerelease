@@ -68,6 +68,7 @@ export function prerelease(options?: Options): any {
         const require = createRequire(import.meta.url)
         const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+        // runtime relative path
         const prereleaseWidgetPath = normalizePath(`/@fs/${path.join(__dirname, './client/index.js')}`)
 
         const prereleaseWidgetScript = /*js*/ `
