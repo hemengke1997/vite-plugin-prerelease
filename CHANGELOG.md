@@ -1,3 +1,12 @@
+# [2.0.0](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v1.0.1...v2.0.0) (2025-02-07)
+
+
+### Features
+
+* ssr support ([ba1d8a7](https://github.com/hemengke1997/vite-plugin-prerelease/commit/ba1d8a7595b3a0dd97446441778f11b6f882c234))
+
+
+
 ## [1.0.1](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v1.0.0...v1.0.1) (2025-01-22)
 
 
