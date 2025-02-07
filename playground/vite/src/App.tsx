@@ -1,5 +1,4 @@
 function App() {
-  console.log(import.meta.env.PRERELEASE, 'import.meta.env.PRERELEASE')
   return (
     <div className={'text-white'}>
       <h1>this is vite-plugin-prerelease playground</h1>

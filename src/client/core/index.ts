@@ -1,5 +1,7 @@
+import { isObject, merge } from 'lodash-es'
 import { type ContextType } from './context'
 import { render } from './render'
+import { type PrereleaseWidgetOptions } from './types'
 import { $ } from './utils/query'
 import './index.css'
 
@@ -23,8 +25,12 @@ export class PrereleaseWidget {
     },
   }
 
-  constructor() {
+  constructor(opts: PrereleaseWidgetOptions = {}) {
     this.isInited = false
+
+    if (isObject(opts)) {
+      this.option = merge(this.option, opts)
+    }
 
     // try to init
     const _onload = () => {

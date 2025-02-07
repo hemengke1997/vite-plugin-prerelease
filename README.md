@@ -80,6 +80,16 @@ import { clientApi } from 'vite-plugin-prerelease/client'
 
 以下是进阶配置，通常你不需要任何配置
 
+### mode
+
+- 类型: `string`
+- 默认值: `runtime`
+
+插件目前支持两种模式，`runtime` 和 `buildtime`。`runtime` 模式下，插件会在运行时注入环境变量，`buildtime` 模式下，插件会在构建时生成预发布代码。
+
+`runtime` 支持 CSR 和 SSR，`buildtime` 仅支持 CSR
+
+
 ### prereleaseEnv
 
 - 类型: `string`

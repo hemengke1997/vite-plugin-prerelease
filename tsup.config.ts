@@ -14,21 +14,24 @@ const commonConfig = (option: Options): Options => {
 
 export const tsup = defineConfig((option) => [
   {
-    ...commonConfig(option),
-    entry: {
-      index: 'src/node/index.ts',
-    },
-    platform: 'node',
-    target: 'node16',
-    format: ['esm', 'cjs'],
-  },
-  {
     entry: ['src/client/**/*.{ts,tsx,css}'],
-    dts: !option.watch,
+    dts: true,
     target: 'es2015',
     format: 'esm',
     outDir: 'dist/client',
     platform: 'browser',
     ...bundleless(),
+  },
+  {
+    ...commonConfig(option),
+    entry: {
+      'index': 'src/node/index.ts',
+      'remix': 'src/node/remix/index.ts',
+      'remix/client': 'src/node/remix/client.tsx',
+    },
+    platform: 'node',
+    target: 'node16',
+    format: ['esm', 'cjs'],
+    external: ['vite-plugin-prerelease/client'],
   },
 ])
