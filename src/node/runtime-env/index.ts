@@ -1,6 +1,6 @@
 import MagicString from 'magic-string'
 import { type PluginOption, type ResolvedConfig } from 'vite'
-import { type Options } from '.'
+import { type Options } from '..'
 import { resolveEnvFromConfig, runtimeEnvCode } from './utils'
 
 export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv'>): PluginOption[] {

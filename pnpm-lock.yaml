@@ -51,6 +51,9 @@ importers:
       '@neodrag/react':
         specifier: ^2.3.0
         version: 2.3.0
+      '@tailwindcss/postcss':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -81,6 +84,9 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      domhandler:
+        specifier: ^5.0.3
+        version: 5.0.3
       eslint:
         specifier: ^9.19.0
         version: 9.19.0(jiti@2.4.2)
@@ -2734,6 +2740,9 @@ packages:
   '@tailwindcss/oxide@4.0.4':
     resolution: {integrity: sha512-vPpu30KFLiGyPOoElkYt8WRvzGKVrrOz49KpfiGGtnQGmyUpL8VCbJzzEEcpKT5BpaaQidhFok+OXscf6hHjOQ==}
     engines: {node: '>= 10'}
+
+  '@tailwindcss/postcss@4.0.4':
+    resolution: {integrity: sha512-Up8fB+DUhy8qvDqlHgZAWaL5iVEbypcuOjzlW4K6EyU+aGEvXK0/wrcKBKOTvg3KKP5givJMexJ0aG1hDPOuRg==}
 
   '@tailwindcss/vite@4.0.4':
     resolution: {integrity: sha512-zrWGbluPeXeoetUQoDFmt1dQIeiOBThfznla7zPIqST69rMmiDD4SZwJrHVoL5CvXz06AYQXz/M/jELSakL7Rg==}
@@ -10357,6 +10366,15 @@ snapshots:
       '@tailwindcss/oxide-linux-x64-musl': 4.0.4
       '@tailwindcss/oxide-win32-arm64-msvc': 4.0.4
       '@tailwindcss/oxide-win32-x64-msvc': 4.0.4
+
+  '@tailwindcss/postcss@4.0.4':
+    dependencies:
+      '@alloc/quick-lru': 5.2.0
+      '@tailwindcss/node': 4.0.4
+      '@tailwindcss/oxide': 4.0.4
+      lightningcss: 1.29.1
+      postcss: 8.5.1
+      tailwindcss: 4.0.4
 
   '@tailwindcss/vite@4.0.4(vite@5.4.14(@types/node@20.17.17)(lightningcss@1.29.1)(terser@5.37.0))':
     dependencies:

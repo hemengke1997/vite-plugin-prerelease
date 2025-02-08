@@ -1,7 +1,7 @@
 import fsp from 'node:fs/promises'
 import path from 'node:path'
 import { build, normalizePath, type PluginOption, type ResolvedConfig } from 'vite'
-import { type Options } from '.'
+import { type Options } from '..'
 import { transformHtml } from './utils'
 
 export function buildtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv' | '__debug'>): PluginOption[] {

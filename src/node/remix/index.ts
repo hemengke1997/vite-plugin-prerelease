@@ -4,7 +4,8 @@ import ts from 'typescript'
 import { type Plugin, type ResolvedConfig } from 'vite'
 import { type Options } from '..'
 import { prerelease as main } from '..'
-import { resolveEnvFromConfig, resolveJsCookie, runtimeEnvCode } from '../utils'
+import { resolveEnvFromConfig, runtimeEnvCode } from '../runtime-env/utils'
+import { resolveJsCookie } from '../utils'
 import { resolvedVirtualModuleId, runtimeId, vmods } from './virtual'
 
 export function prerelease(options?: Pick<Options, 'prereleaseWidget' | 'prereleaseEnv'>): any {
