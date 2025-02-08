@@ -47,7 +47,7 @@
   "sideEffects": false,
   "scripts": {
     "dev": "rm -rf dist && tsup --watch",
-    "build": "tsup",
+    "build": "rm -rf dist && tsup",
     "test": "vitest",
     "prepare": "simple-git-hooks",
     "lint-staged": "lint-staged",

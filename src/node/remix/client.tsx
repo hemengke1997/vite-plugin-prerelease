@@ -37,17 +37,16 @@ export const withPrereleaseWidget =
       useEffect(() => {
         if (hydrated) {
           // js-cookie
-
           injectScript(runtimeCode.jsCookie)
 
           // runtime env
           injectScript(runtimeCode.env)
 
+          setKey((t) => t + 1)
+
           // prerelease widget
           setTimeout(() => {
             new PrereleaseWidget(config)
-
-            setKey((t) => t + 1)
           })
         }
       }, [hydrated])
