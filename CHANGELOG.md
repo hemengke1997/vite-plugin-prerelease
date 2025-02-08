@@ -1,3 +1,17 @@
+## [2.0.1](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.0...v2.0.1) (2025-02-08)
+
+
+### Bug Fixes
+
+* remix ([57db7ab](https://github.com/hemengke1997/vite-plugin-prerelease/commit/57db7abf65052a8e71069d6289d7c72e47263872))
+
+
+### Performance Improvements
+
+* speed ([03d332f](https://github.com/hemengke1997/vite-plugin-prerelease/commit/03d332f079a7e622d3b059b0186716f9409fc79f))
+
+
+
 # [2.0.0](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v1.0.1...v2.0.0) (2025-02-07)
 
 
