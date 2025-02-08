@@ -108,7 +108,7 @@ function Draggable(props: DraggableProps) {
   return (
     <div
       ref={draggableRef}
-      className={classNames('pw-w-fit pw-pointer-events-auto', !isDragging && 'pw-transition-transform')}
+      className={classNames('pw-pointer-events-auto pw-w-fit', !isDragging && 'pw-transition-transform')}
     >
       {children}
     </div>

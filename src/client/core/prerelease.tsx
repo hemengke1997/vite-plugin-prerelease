@@ -7,10 +7,10 @@ export function PrereleaseWidget() {
 
   return (
     <>
-      <div className='pw-block pw-fixed pw-z-[99999] pw-right-0 pw-top-0 pw-left-0 pw-bottom-0 pw-pointer-events-none'>
+      <div className='pw-pointer-events-none pw-fixed pw-bottom-0 pw-left-0 pw-right-0 pw-top-0 pw-z-[99999] pw-block'>
         <Draggable>
           <div
-            className='pw-overflow-hidden pw-bg-black pw-bg-opacity-80 pw-text-white pw-p-1 pw-text-xs pw-cursor-pointer pw-backdrop-blur-md pw-select-none pw-shadow-md pw-rounded-md'
+            className='pw-cursor-pointer pw-select-none pw-overflow-hidden pw-rounded-md pw-bg-black pw-bg-opacity-80 pw-p-1 pw-text-xs pw-text-white pw-shadow-md pw-backdrop-blur-md'
             onClick={() => {
               clientApi.tooglePrerelease()
             }}

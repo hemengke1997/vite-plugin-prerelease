@@ -91,7 +91,7 @@
     "conventional-changelog-cli": "^5.0.0",
     "cross-env": "^7.0.3",
     "domhandler": "^5.0.3",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.0",
     "lint-staged": "^15.4.3",
     "lodash-es": "^4.17.21",
     "postcss": "^8.5.1",
