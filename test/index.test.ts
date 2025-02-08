@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { describe, expect, test } from 'vitest'
-import { transformHtml } from '../src/node/utils'
+import { transformHtml } from '../src/node/buildtime-env/utils'
 
 function transform() {
   const originHtml = fs.readFileSync(path.join(__dirname, './fixtures/test.html'), 'utf-8')
