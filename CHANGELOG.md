@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.2...v2.0.3) (2025-02-10)
+
+
+### Bug Fixes
+
+* ssr virtual module resolve error ([b5c835c](https://github.com/hemengke1997/vite-plugin-prerelease/commit/b5c835c31530e810b2ac7e5dcaca01ec53d1d0e0))
+
+
+
 ## [2.0.2](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.1...v2.0.2) (2025-02-10)
 
 
