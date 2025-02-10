@@ -1,4 +1,13 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router'
+import {
+  isRouteErrorResponse,
+  Links,
+  type LoaderFunctionArgs,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from 'react-router'
+import server from 'vite-plugin-prerelease/remix/server'
 import type { Route } from './+types/root'
 import './app.css'
 
@@ -33,7 +42,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
+export function loader({ request }: LoaderFunctionArgs) {
+  server(request)
+}
+
 export default function App() {
+  console.log(import.meta.env.MODE)
   return <Outlet />
 }
 

@@ -30,7 +30,20 @@ export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv'>): P
         const end = start + match[0].length
         const name = match[1]
 
-        magicString.overwrite(start, end, `${ssr ? 'global' : 'window'}.__env__?.${name}`)
+        magicString.overwrite(
+          start,
+          end,
+          /*js*/ `(() => { 
+              let isPreRelease = false
+              if(typeof window !== 'undefined' && window.Cookies?.get('prerelease') === 'true') {
+                isPreRelease = true
+              }
+              if(typeof global !== 'undefined' && global.__isPrerelease__) {
+                isPreRelease = true
+              }
+              return ${ssr ? 'global' : 'window'}.__env__?.[isPreRelease ? 'prerelease' : 'current'].${name}
+            })()`,
+        )
       }
 
       if (!magicString.hasChanged()) {
@@ -57,7 +70,7 @@ export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv'>): P
         {
           tag: 'script',
           attrs: { type: 'application/javascript' },
-          injectTo: 'body',
+          injectTo: 'head',
           children: runtimeEnvCode(env),
         },
       ]

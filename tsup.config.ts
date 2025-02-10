@@ -1,10 +1,8 @@
-import { defineConfig, type Options } from 'tsup'
-import { bundleless } from 'tsup-plugin-bundleless'
+import { type Options } from 'tsup'
 
 const commonConfig = (option: Options): Options => {
   return {
     dts: true,
-    clean: !option.watch,
     minify: false,
     sourcemap: !!option.watch,
     treeshake: true,
@@ -12,15 +10,17 @@ const commonConfig = (option: Options): Options => {
   }
 }
 
-export const tsup = defineConfig((option) => [
+export const tsup = (option: Options): Options[] => [
   {
-    entry: ['src/client/**/*.{ts,tsx,css}'],
-    dts: true,
+    ...commonConfig(option),
+    entry: {
+      'client/index': 'src/client/index.ts',
+    },
     target: 'es2015',
     format: 'esm',
-    outDir: 'dist/client',
     platform: 'browser',
-    ...bundleless(),
+    injectStyle: true,
+    splitting: false,
   },
   {
     ...commonConfig(option),
@@ -28,10 +28,11 @@ export const tsup = defineConfig((option) => [
       'index': 'src/node/index.ts',
       'remix': 'src/node/remix/index.ts',
       'remix/client': 'src/node/remix/client.tsx',
+      'remix/server': 'src/node/remix/server.ts',
     },
     platform: 'node',
     target: 'node16',
     format: ['esm', 'cjs'],
-    external: ['vite-plugin-prerelease/client'],
+    external: [/^virtual:.*/, 'vite-plugin-prerelease/client'],
   },
-])
+]

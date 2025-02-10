@@ -104,6 +104,23 @@ import { clientApi } from 'vite-plugin-prerelease/client'
 网页小组件配置项，用于配置组件的位置、能否浮动等。
 
 
+## Remix / React-Router 7 服务端渲染
+
+你还需要做一些简单的操作：
+
+在 `root` 中添加以下代码：
+```tsx
+import server from 'vite-plugin-prerelease/remix/server'
+
+export function loader({ request }) {
+  server(request)
+  
+  // Your code
+}
+```
+
+这样就可以了！
+
 ## 注意事项
 
 - 如果 NODE_ENV 是 `production`，则插件不会生效，避免了在生产环境下出现预发布代码

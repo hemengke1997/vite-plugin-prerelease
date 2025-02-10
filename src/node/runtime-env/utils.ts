@@ -5,13 +5,7 @@ import serialize from 'serialize-javascript'
 import { normalizePath, type ResolvedConfig } from 'vite'
 
 export function runtimeEnvCode(env: { prerelease: Record<string, any>; current: Record<string, any> }) {
-  return /*js*/ `
-    if(window.Cookies?.get('prerelease') === 'true') {
-      window.__env__ = ${serialize(env.prerelease)}
-    } else {
-      window.__env__ = ${serialize(env.current)}
-    }
-  `
+  return /*js*/ `window.__env__ = ${serialize(env)}`
 }
 
 function arraify<T>(target: T | T[]): T[] {
@@ -75,7 +69,7 @@ export function resolveEnvFromConfig(config: ResolvedConfig, prereleaseEnv: stri
   }
 
   // @ts-ignore
-  global.__env__ = {}
+  global.__env__ = env
 
   return env
 }
