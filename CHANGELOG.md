@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.1...v2.0.2) (2025-02-10)
+
+
+### Bug Fixes
+
+* ssr hydration ([380f721](https://github.com/hemengke1997/vite-plugin-prerelease/commit/380f721ff80b656f7485d688edee42517c6c9383))
+
+
+
 ## [2.0.1](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.0...v2.0.1) (2025-02-08)
 
 
