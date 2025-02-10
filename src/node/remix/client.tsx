@@ -1,6 +1,5 @@
 import { type ComponentType, useEffect, useState } from 'react'
 import { PrereleaseWidget, type PrereleaseWidgetOptions } from 'vite-plugin-prerelease/client'
-import 'virtual:prerelease-runtime'
 
 let hydrating = true
 

@@ -1,6 +1,7 @@
 import serialize from 'serialize-javascript'
 import { type ConfigEnv, type HtmlTagDescriptor, type PluginOption } from 'vite'
 import { type PrereleaseWidgetOptions } from '../client/core/types'
+import { id } from './remix/virtual'
 import { resolveJsCookie } from './utils'
 
 export type Options = {
@@ -53,6 +54,14 @@ export async function prerelease(options?: Options): Promise<any> {
     enforce: 'pre',
     config(_, configEnv) {
       env = configEnv
+      return {
+        ssr: {
+          noExternal: ['vite-plugin-prelease'],
+        },
+        optimizeDeps: {
+          exclude: [id('*')],
+        },
+      }
     },
     transformIndexHtml: {
       // pre for base url

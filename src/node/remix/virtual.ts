@@ -1,6 +1,8 @@
-export const runtimeId = 'virtual:prerelease-runtime'
+export const id = (name: string) => `virtual:prerelease-${name}`
 
-export const serverId = 'virtual:prerelease-server'
+export const runtimeId = id('runtime')
+
+export const serverId = id('server')
 
 export const vmods = [runtimeId, serverId]
 
