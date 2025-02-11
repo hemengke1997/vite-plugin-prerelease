@@ -1,3 +1,12 @@
+## [2.0.4](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.3...v2.0.4) (2025-02-11)
+
+
+### Bug Fixes
+
+* ssr typo ([84c49cd](https://github.com/hemengke1997/vite-plugin-prerelease/commit/84c49cda982cb12507f769a27a7d69a94cceff9b))
+
+
+
 ## [2.0.3](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.2...v2.0.3) (2025-02-10)
 
 
