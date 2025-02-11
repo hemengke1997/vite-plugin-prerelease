@@ -56,7 +56,7 @@ export async function prerelease(options?: Options): Promise<any> {
       env = configEnv
       return {
         ssr: {
-          noExternal: ['vite-plugin-prelease'],
+          noExternal: ['vite-plugin-prerelease'],
         },
         optimizeDeps: {
           exclude: [id('*')],
