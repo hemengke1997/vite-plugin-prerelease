@@ -99,6 +99,20 @@ import { clientApi } from 'vite-plugin-prerelease/client'
 
 使用此环境，用于构建预发布环境代码
 
+### excludeEnvs
+
+- 类型: `string[]`
+- 默认值: `[]`
+
+需要排除的环境变量，排除之后，环境变量不再被动态修改
+
+### entry
+
+- 类型: `string`
+- 默认值: `src/main`
+
+项目入口文件，对于 `csr` 项目，入口通常是 `src/main`，对于 `remix/rr7` 项目，入口通常是 `app/root`
+
 ### prereleaseWidget
 
 - 类型: `PrereleaseWidgetOptions`
