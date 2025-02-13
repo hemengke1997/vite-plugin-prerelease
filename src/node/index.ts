@@ -52,8 +52,6 @@ declare global {
   interface Window {
     Cookies: typeof import('js-cookie')
   }
-  // eslint-disable-next-line
-  var __isPrerelease__: boolean
 }
 
 export async function prerelease(options?: Options): Promise<any> {
