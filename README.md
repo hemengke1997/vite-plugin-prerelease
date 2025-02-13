@@ -109,9 +109,8 @@ import { clientApi } from 'vite-plugin-prerelease/client'
 ### entry
 
 - 类型: `string`
-- 默认值: `src/main`
 
-项目入口文件，对于 `csr` 项目，入口通常是 `src/main`，对于 `remix/rr7` 项目，入口通常是 `app/root`
+项目入口文件，默认会自动探测
 
 ### prereleaseWidget
 

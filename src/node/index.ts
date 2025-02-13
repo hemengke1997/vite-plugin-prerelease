@@ -1,4 +1,5 @@
 import serialize from 'serialize-javascript'
+import glob from 'tiny-glob'
 import { normalizePath, type PluginOption, type ResolvedConfig } from 'vite'
 import { type PrereleaseWidgetOptions } from '../client/core/types'
 import { resolveEnvFromConfig, runtimeEnvCode } from './runtime-env/utils'
@@ -16,6 +17,15 @@ export type Options = {
   mode?: 'runtime' | 'buildtime'
 
   /**
+   * 入口文件
+   * 对于 csr 项目，入口通常是 src/main 或 app/main
+   * 对于 remix/rr7 项目，入口通常是 app/root
+   *
+   * 默认情况自动探测 ['src/main', 'src/root', 'app/main', 'app/root']
+   */
+  entry?: string
+
+  /**
    * 需要排除的环境变量，排除之后，环境变量不再被动态修改
    */
   excludeEnvs?: string[]
@@ -30,13 +40,6 @@ export type Options = {
    * 预发布小组件配置
    */
   prereleaseWidget?: PrereleaseWidgetOptions
-
-  /**
-   * 入口文件
-   * 对于 csr 项目，入口通常是 src/main
-   * 对于 remix/rr7 项目，入口通常是 app/root
-   */
-  entry?: string
 
   /**
    * debug
@@ -60,14 +63,14 @@ export async function prerelease(options?: Options): Promise<any> {
     excludeEnvs = [],
     prereleaseEnv = 'production',
     prereleaseWidget = {},
-    entry = 'src/main',
+    entry,
     __debug = false,
   } = options || {}
   if (process.env.NODE_ENV === prereleaseEnv || process.env.NODE_ENV === 'production') {
     return
   }
 
-  // Insert the pre-release widget
+  let entryFile: string = entry || ''
   let config: ResolvedConfig
   let env: ReturnType<typeof resolveEnvFromConfig>
 
@@ -86,8 +89,26 @@ export async function prerelease(options?: Options): Promise<any> {
     },
     configResolved: {
       order: 'pre',
-      handler(_config) {
+      async handler(_config) {
         config = _config
+
+        if (!entryFile) {
+          // Auto detect entry file
+          const maybeEntry = ['src/main', 'src/root', 'app/main', 'app/root']
+          for (const file of maybeEntry) {
+            try {
+              const files = await glob(`${file}.{ts,tsx,js,jsx}`, {
+                cwd: config.root,
+                filesOnly: true,
+              })
+              if (files.length) {
+                entryFile = files[0]
+                break
+              }
+            } catch {}
+          }
+        }
+
         env = resolveEnvFromConfig(config, prereleaseEnv)
       },
     },
@@ -95,9 +116,10 @@ export async function prerelease(options?: Options): Promise<any> {
       order: 'pre',
       handler(code, id) {
         let isEntry = false
-        if (entry.startsWith(config.root)) {
-          isEntry = normalizePath(id).endsWith(normalizePath(entry))
-        } else if (new RegExp(entry).test(id)) {
+
+        if (entryFile.startsWith(config.root)) {
+          isEntry = normalizePath(id).endsWith(normalizePath(entryFile))
+        } else if (new RegExp(entryFile).test(id)) {
           isEntry = true
         }
 

@@ -12,7 +12,7 @@ declare module '@remix-run/node' {
 export default defineConfig(() => {
   return {
     plugins: [
-      prerelease({ entry: 'app/root.tsx' }),
+      prerelease(),
       remix({
         future: {
           v3_fetcherPersist: true,
