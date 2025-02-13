@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.0...v2.1.1) (2025-02-13)
+
+
+### Features
+
+* auto detect entry file ([8679cb2](https://github.com/hemengke1997/vite-plugin-prerelease/commit/8679cb24957ea6756135a5c86b12ea5adf024cd5))
+
+
+
 # [2.1.0](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.0.4...v2.1.0) (2025-02-13)
 
 
