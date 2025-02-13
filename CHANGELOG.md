@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.1...v2.1.2) (2025-02-13)
+
+
+### Bug Fixes
+
+* entry not found ([96244ed](https://github.com/hemengke1997/vite-plugin-prerelease/commit/96244edc7ca8cfa3ab3465677805dd6912e055c6))
+
+
+
 ## [2.1.1](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.0...v2.1.1) (2025-02-13)
 
 
