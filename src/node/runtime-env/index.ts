@@ -3,8 +3,8 @@ import { type PluginOption, type ResolvedConfig } from 'vite'
 import { type Options } from '..'
 import { resolveEnvFromConfig, runtimeEnvCode } from './utils'
 
-export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv'>): PluginOption[] {
-  const { prereleaseEnv } = options
+export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv' | 'excludeEnvs'>): PluginOption[] {
+  const { prereleaseEnv, excludeEnvs } = options
 
   let env: ReturnType<typeof resolveEnvFromConfig>
 
@@ -22,13 +22,17 @@ export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv'>): P
 
       const magicString = new MagicString(code)
 
-      const importMetaPattern = /import\.meta\.env\.([A-Z0-9_]+)/g
+      const importMetaPattern = /import\.meta\.env(?:\.([A-Z0-9_]+))?/g
       let match: RegExpExecArray | null
 
       while ((match = importMetaPattern.exec(code))) {
         const start = match.index
         const end = start + match[0].length
         const name = match[1]
+
+        if (name && excludeEnvs.includes(name)) {
+          continue
+        }
 
         magicString.overwrite(
           start,
@@ -41,7 +45,7 @@ export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv'>): P
               if(typeof global !== 'undefined' && global.__isPrerelease__) {
                 isPreRelease = true
               }
-              return ${ssr ? 'global' : 'window'}.__env__?.[isPreRelease ? 'prerelease' : 'current'].${name}
+              return ${ssr ? 'global' : 'window'}.__env__?.[isPreRelease ? 'prerelease' : 'current']${name ? `.${name}` : ''}
             })()`,
         )
       }

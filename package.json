@@ -28,22 +28,13 @@
     },
     "./client": {
       "types": "./dist/client/index.d.ts",
+      "require": "./dist/client/index.cjs",
       "import": "./dist/client/index.js"
     },
-    "./remix": {
-      "types": "./dist/remix.d.ts",
-      "require": "./dist/remix.cjs",
-      "import": "./dist/remix.js"
-    },
-    "./remix/server": {
-      "types": "./dist/remix/server.d.ts",
-      "require": "./dist/remix/server.cjs",
-      "import": "./dist/remix/server.js"
-    },
-    "./remix/client": {
-      "types": "./dist/remix/client.d.ts",
-      "require": "./dist/remix/client.cjs",
-      "import": "./dist/remix/client.js"
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "require": "./dist/server.cjs",
+      "import": "./dist/server.js"
     },
     "./virtual": {
       "types": "./virtual.d.ts"
@@ -62,10 +53,19 @@
     "bump": "bumpp package.json -c --no-push -t --all -x \"npm run changelog\""
   },
   "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17",
     "typescript": ">=4",
     "vite": ">=5"
   },
-  "peerDependenciesMeta": {},
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@types/js-cookie": "^3.0.6",
     "cheerio": "^1.0.0",
@@ -73,8 +73,6 @@
     "dotenv": "^16.4.7",
     "js-cookie": "^3.0.5",
     "magic-string": "^0.30.17",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "serialize-javascript": "^6.0.2"
   },
   "devDependencies": {
@@ -101,7 +99,9 @@
     "lodash-es": "^4.17.21",
     "postcss": "^8.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "react": "^18.3.1",
     "react-atom-toast": "^1.3.3",
+    "react-dom": "^18.3.1",
     "simple-git-hooks": "^2.11.1",
     "tailwindcss": "^3.4.17",
     "tsup": "8.3.0",

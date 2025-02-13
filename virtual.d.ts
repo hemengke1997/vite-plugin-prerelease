@@ -3,7 +3,7 @@ declare module 'virtual:prerelease-runtime' {
   export default runtime
 }
 
-declare module 'virtual:prerelease-server' {
-  const server: (request: Request) => void
-  export default server
+declare module 'virtual:prerelease-widget' {
+  const PrereleaseWidget: any
+  export { PrereleaseWidget }
 }

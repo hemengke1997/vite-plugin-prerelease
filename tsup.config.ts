@@ -1,38 +1,33 @@
 import { type Options } from 'tsup'
 
-const commonConfig = (option: Options): Options => {
-  return {
-    dts: true,
-    minify: false,
-    sourcemap: !!option.watch,
-    treeshake: true,
-    external: [/^virtual:.*/, /vite/],
-  }
+const commonConfig: Options = {
+  dts: true,
+  minify: false,
+  treeshake: true,
+  external: [/^virtual:.*/],
 }
 
-export const tsup = (option: Options): Options[] => [
+export const tsup = (): Options[] => [
   {
-    ...commonConfig(option),
+    ...commonConfig,
     entry: {
       'client/index': 'src/client/index.ts',
     },
     target: 'es2015',
-    format: 'esm',
+    format: ['esm', 'cjs'],
     platform: 'browser',
     injectStyle: true,
     splitting: false,
+    external: [...(commonConfig.external || []), /^vite-plugin-prerelease\/client/],
   },
   {
-    ...commonConfig(option),
+    ...commonConfig,
     entry: {
-      'index': 'src/node/index.ts',
-      'remix': 'src/node/remix/index.ts',
-      'remix/client': 'src/node/remix/client.tsx',
-      'remix/server': 'src/node/remix/server.ts',
+      index: 'src/node/index.ts',
+      server: 'src/node/server.ts',
     },
     platform: 'node',
     target: 'node16',
     format: ['esm', 'cjs'],
-    external: [/^virtual:.*/, 'vite-plugin-prerelease/client'],
   },
 ]

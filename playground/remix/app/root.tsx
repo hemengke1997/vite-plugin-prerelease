@@ -1,6 +1,6 @@
 import { type LoaderFunctionArgs } from '@remix-run/node'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
-import server from 'vite-plugin-prerelease/remix/server'
+import { server } from 'vite-plugin-prerelease/server'
 import './tailwind.css'
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -22,7 +22,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export function loader({ request }: LoaderFunctionArgs) {
-  server(request)
+  server({
+    cookie: request.headers.get('Cookie'),
+  })
   return null
 }
 

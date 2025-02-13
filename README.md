@@ -115,7 +115,9 @@ import { clientApi } from 'vite-plugin-prerelease/client'
 import server from 'vite-plugin-prerelease/remix/server'
 
 export function loader({ request }) {
-  server(request)
+  server({
+    cookie: request.headers.get('Cookie'),
+  })
   
   // Your code
 }

@@ -7,7 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router'
-import server from 'vite-plugin-prerelease/remix/server'
+import { server } from 'vite-plugin-prerelease/server'
 import type { Route } from './+types/root'
 import './app.css'
 
@@ -43,7 +43,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export function loader({ request }: LoaderFunctionArgs) {
-  server(request)
+  server({
+    cookie: request.headers.get('Cookie'),
+  })
 }
 
 export default function App() {

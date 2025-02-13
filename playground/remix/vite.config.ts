@@ -1,6 +1,6 @@
 import { vitePlugin as remix } from '@remix-run/dev'
 import { defineConfig } from 'vite'
-import { prerelease } from 'vite-plugin-prerelease/remix'
+import { prerelease } from 'vite-plugin-prerelease'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 declare module '@remix-run/node' {
@@ -12,7 +12,7 @@ declare module '@remix-run/node' {
 export default defineConfig(() => {
   return {
     plugins: [
-      prerelease(),
+      prerelease({ entry: 'app/root.tsx' }),
       remix({
         future: {
           v3_fetcherPersist: true,
