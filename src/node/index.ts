@@ -107,6 +107,9 @@ export async function prerelease(options?: Options): Promise<any> {
               }
             } catch {}
           }
+          if (!entryFile) {
+            console.warn('\n[vite-plugin-prerelease]: Entry file not found, please specify the "entry" in the options')
+          }
         }
 
         env = resolveEnvFromConfig(config, prereleaseEnv)
@@ -115,8 +118,9 @@ export async function prerelease(options?: Options): Promise<any> {
     transform: {
       order: 'pre',
       handler(code, id) {
-        let isEntry = false
+        if (!entryFile) return
 
+        let isEntry = false
         if (entryFile.startsWith(config.root)) {
           isEntry = normalizePath(id).endsWith(normalizePath(entryFile))
         } else if (new RegExp(entryFile).test(id)) {
@@ -124,8 +128,7 @@ export async function prerelease(options?: Options): Promise<any> {
         }
 
         if (isEntry) {
-          return /*js*/ `
-            import '${runtimeId}';
+          return `import '${runtimeId}';
             ${code}
           `
         }
