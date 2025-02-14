@@ -1,3 +1,12 @@
+## [2.1.4](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.3...v2.1.4) (2025-02-14)
+
+
+### Features
+
+* support url query to init env ([768ba68](https://github.com/hemengke1997/vite-plugin-prerelease/commit/768ba6838fae4f862363e05b4d929f6aa0e40228))
+
+
+
 ## [2.1.3](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.2...v2.1.3) (2025-02-14)
 
 
