@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.2...v2.1.3) (2025-02-14)
+
+
+### Bug Fixes
+
+* sourcemap incorrect ([854cd52](https://github.com/hemengke1997/vite-plugin-prerelease/commit/854cd52e13b1a28f606af50a601f4df69ffb9bc6))
+
+
+
 ## [2.1.2](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.1...v2.1.2) (2025-02-13)
 
 
