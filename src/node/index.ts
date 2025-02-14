@@ -128,9 +128,12 @@ export async function prerelease(options?: Options): Promise<any> {
         }
 
         if (isEntry) {
-          return `import '${runtimeId}';
+          return {
+            code: `import '${runtimeId}';
             ${code}
-          `
+          `,
+            map: null,
+          }
         }
       },
     },
@@ -145,16 +148,21 @@ export async function prerelease(options?: Options): Promise<any> {
         case resolvedVirtualModuleId(runtimeId): {
           const jsCookie = await resolveJsCookie()
           const envCode = runtimeEnvCode(env)
-          return /*js*/ `
+          return {
+            code: /*js*/ `
             import { PrereleaseWidget } from 'vite-plugin-prerelease/client'
 
             if(typeof window !== 'undefined') {
               ${jsCookie}
               ${envCode}
 
-              new PrereleaseWidget(${serialize(prereleaseWidget)})
+              setTimeout(() => {
+                new PrereleaseWidget(${serialize(prereleaseWidget)})
+              }, 60);
             }
-          `
+          `,
+            map: null,
+          }
         }
         default:
           break
