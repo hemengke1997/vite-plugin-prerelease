@@ -1,12 +1,9 @@
 import MagicString from 'magic-string'
 import { type PluginOption, type ResolvedConfig } from 'vite'
 import { type Options } from '..'
-import { resolveEnvFromConfig, runtimeEnvCode } from './utils'
 
-export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv' | 'excludeEnvs'>): PluginOption[] {
-  const { prereleaseEnv, excludeEnvs } = options
-
-  let env: ReturnType<typeof resolveEnvFromConfig>
+export function runtimeEnv(options: Pick<Required<Options>, 'excludeEnvs'>): PluginOption[] {
+  const { excludeEnvs } = options
 
   let config: ResolvedConfig
 
@@ -14,8 +11,6 @@ export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv' | 'e
     name: 'vite:plugin-runtime-env',
     async configResolved(_config) {
       config = _config
-
-      env = resolveEnvFromConfig(config, prereleaseEnv)
     },
     transform(code, _, options) {
       const { ssr } = options || {}
@@ -68,16 +63,6 @@ export function runtimeEnv(options: Pick<Required<Options>, 'prereleaseEnv' | 'e
         code: magicString.toString(),
         map: magicString.generateMap({ hires: true }),
       }
-    },
-    transformIndexHtml() {
-      return [
-        {
-          tag: 'script',
-          attrs: { type: 'application/javascript' },
-          injectTo: 'head',
-          children: runtimeEnvCode(env),
-        },
-      ]
     },
   }
 

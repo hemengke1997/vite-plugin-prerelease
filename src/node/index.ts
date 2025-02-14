@@ -2,7 +2,7 @@ import serialize from 'serialize-javascript'
 import glob from 'tiny-glob'
 import { normalizePath, type PluginOption, type ResolvedConfig } from 'vite'
 import { type PrereleaseWidgetOptions } from '../client/core/types'
-import { resolveEnvFromConfig, runtimeEnvCode } from './runtime-env/utils'
+import { resolveEnvFromConfig } from './runtime-env/utils'
 import { resolveJsCookie } from './utils'
 import { id, resolvedVirtualModuleId, runtimeId, vmods } from './virtual'
 
@@ -147,14 +147,21 @@ export async function prerelease(options?: Options): Promise<any> {
       switch (id) {
         case resolvedVirtualModuleId(runtimeId): {
           const jsCookie = await resolveJsCookie()
-          const envCode = runtimeEnvCode(env)
           return {
             code: /*js*/ `
-            import { PrereleaseWidget } from 'vite-plugin-prerelease/client'
+            import { PrereleaseWidget, clientApi } from 'vite-plugin-prerelease/client'
 
-            if(typeof window !== 'undefined') {
+            if (typeof window !== 'undefined') {
               ${jsCookie}
-              ${envCode}
+
+              window.__env__ = ${serialize(env)}
+
+              const prereleaseQuery = new URLSearchParams(window.location.search).get('prerelease')
+              if (prereleaseQuery === 'true') {
+                clientApi.enablePrerelease()
+              } else if (prereleaseQuery === 'false') {
+                clientApi.disablePrelease()
+              }
 
               setTimeout(() => {
                 new PrereleaseWidget(${serialize(prereleaseWidget)})
@@ -177,7 +184,6 @@ export async function prerelease(options?: Options): Promise<any> {
     return [
       ...commonPlugins,
       ...runtimeEnv({
-        prereleaseEnv,
         excludeEnvs,
       }),
     ]

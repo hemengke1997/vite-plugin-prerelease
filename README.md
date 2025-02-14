@@ -78,6 +78,10 @@ import { clientApi } from 'vite-plugin-prerelease/client'
 
 切换环境
 
+## 初始化环境
+
+插件支持通过浏览器url参数 `prerelease` 为 `true/false` 来初始化环境，如：`http://localhost:5174?prerelease=true`
+
 ## 配置项
 
 以下是进阶配置，通常你不需要任何配置

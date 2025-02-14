@@ -1,12 +1,7 @@
 import { parse } from 'dotenv'
 import fs from 'node:fs'
 import path from 'node:path'
-import serialize from 'serialize-javascript'
 import { normalizePath, type ResolvedConfig } from 'vite'
-
-export function runtimeEnvCode(env: { prerelease: Record<string, any>; current: Record<string, any> }) {
-  return /*js*/ `window.__env__ = ${serialize(env)}`
-}
 
 function arraify<T>(target: T | T[]): T[] {
   return Array.isArray(target) ? target : [target]
