@@ -1,6 +1,6 @@
 import serialize from 'serialize-javascript'
 import glob from 'tiny-glob'
-import { type PluginOption, type ResolvedConfig } from 'vite'
+import { normalizePath, type PluginOption, type ResolvedConfig } from 'vite'
 import { type PrereleaseWidgetOptions } from '../client/core/types'
 import { resolveEnvFromConfig } from './runtime-env/utils'
 import { resolveJsCookie } from './utils'
@@ -104,9 +104,10 @@ export async function prerelease(options?: Options): Promise<any> {
               const files = await glob(`${file}.{ts,tsx,js,jsx}`, {
                 cwd: config.root,
                 filesOnly: true,
+                absolute: true,
               })
               if (files.length) {
-                entryFile = files[0]
+                entryFile = normalizePath(files[0])
                 break
               }
             } catch {}
