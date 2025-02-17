@@ -63,7 +63,6 @@ export function resolveEnvFromConfig(config: ResolvedConfig, prereleaseEnv: stri
     },
   }
 
-  // @ts-ignore
   global.__env__ = env
 
   return env

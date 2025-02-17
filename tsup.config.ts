@@ -25,6 +25,7 @@ export const tsup = (): Options[] => [
     entry: {
       index: 'src/node/index.ts',
       server: 'src/node/server.ts',
+      astro: 'src/node/astro/index.ts',
     },
     platform: 'node',
     target: 'node16',

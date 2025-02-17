@@ -1,6 +1,6 @@
 import serialize from 'serialize-javascript'
 import glob from 'tiny-glob'
-import { normalizePath, type PluginOption, type ResolvedConfig } from 'vite'
+import { type PluginOption, type ResolvedConfig } from 'vite'
 import { type PrereleaseWidgetOptions } from '../client/core/types'
 import { resolveEnvFromConfig } from './runtime-env/utils'
 import { resolveJsCookie } from './utils'
@@ -23,7 +23,7 @@ export type Options = {
    *
    * 默认情况自动探测 ['src/main', 'src/root', 'app/main', 'app/root']
    */
-  entry?: string
+  entry?: string | RegExp
 
   /**
    * 需要排除的环境变量，排除之后，环境变量不再被动态修改
@@ -55,6 +55,9 @@ declare global {
   interface Window {
     Cookies: typeof import('js-cookie')
   }
+
+  // eslint-disable-next-line no-var, vars-on-top
+  var __env__: ReturnType<typeof resolveEnvFromConfig>
 }
 
 export async function prerelease(options?: Options): Promise<any> {
@@ -66,11 +69,12 @@ export async function prerelease(options?: Options): Promise<any> {
     entry,
     __debug = false,
   } = options || {}
+
   if (process.env.NODE_ENV === prereleaseEnv || process.env.NODE_ENV === 'production') {
     return
   }
 
-  let entryFile: string = entry || ''
+  let entryFile = entry || ''
   let config: ResolvedConfig
   let env: ReturnType<typeof resolveEnvFromConfig>
 
@@ -121,9 +125,11 @@ export async function prerelease(options?: Options): Promise<any> {
         if (!entryFile) return
 
         let isEntry = false
-        if (entryFile.startsWith(config.root)) {
-          isEntry = normalizePath(id).endsWith(normalizePath(entryFile))
+        if (entryFile instanceof RegExp && entryFile.test(id)) {
+          isEntry = true
         } else if (new RegExp(entryFile).test(id)) {
+          isEntry = true
+        } else if (entryFile === id) {
           isEntry = true
         }
 

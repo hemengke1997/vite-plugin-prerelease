@@ -129,7 +129,7 @@ import { clientApi } from 'vite-plugin-prerelease/client'
 
 在 `root` 中添加以下代码：
 ```tsx
-import server from 'vite-plugin-prerelease/remix/server'
+import server from 'vite-plugin-prerelease/server'
 
 export function loader({ request }) {
   server({
@@ -140,7 +140,19 @@ export function loader({ request }) {
 }
 ```
 
-这样就可以了！
+## Astro
+
+你还需要做一些简单的操作：
+
+在 `pages/index.astro` 中添加以下代码：
+```tsx
+import { server } from 'vite-plugin-prerelease/server'
+
+server({
+  cookie: Astro.request.headers.get('Cookie')
+})
+```
+
 
 ## 注意事项
 

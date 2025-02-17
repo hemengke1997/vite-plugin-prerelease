@@ -1,0 +1,13 @@
+---
+import { server } from 'vite-plugin-prerelease/server'
+import Layout from '../layouts/Layout.astro'
+import Home from '../views/home'
+
+server({
+  cookie: Astro.request.headers.get('Cookie'),
+})
+---
+
+<Layout>
+  <Home client:visible />
+</Layout>

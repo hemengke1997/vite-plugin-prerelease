@@ -1,4 +1,5 @@
 import MagicString from 'magic-string'
+import serialize from 'serialize-javascript'
 import { type PluginOption, type ResolvedConfig } from 'vite'
 import { type Options } from '..'
 
@@ -29,20 +30,24 @@ export function runtimeEnv(options: Pick<Required<Options>, 'excludeEnvs'>): Plu
           continue
         }
 
-        magicString.overwrite(
-          start,
-          end,
-          /*js*/ `(() => { 
-              let isPreRelease = false
-              if(typeof window !== 'undefined' && window.Cookies?.get('prerelease') === 'true') {
-                isPreRelease = true
-              }
-              if(typeof global !== 'undefined' && global.__isPrerelease__) {
-                isPreRelease = true
-              }
-              return ${ssr ? 'global' : 'window'}.__env__?.[isPreRelease ? 'prerelease' : 'current']${name ? `.${name}` : ''}
-            })()`,
-        )
+        const replaceCode = {
+          ssr: /*js*/ `(() => {
+            let isPreRelease = false
+            if (global.__isPrerelease__) {
+              isPreRelease = true
+            }
+            return ${serialize(global.__env__)}?.[isPreRelease ? 'prerelease' : 'current']${name ? `.${name}` : ''}
+          })()`,
+          crs: /*js*/ `(() => {
+            let isPreRelease = false
+            if (window.Cookies?.get('prerelease') === 'true') {
+              isPreRelease = true
+            }
+            return window.__env__?.[isPreRelease ? 'prerelease' : 'current']${name ? `.${name}` : ''}
+          })()`,
+        }
+
+        magicString.overwrite(start, end, ssr ? replaceCode.ssr : replaceCode.crs)
       }
 
       if (!magicString.hasChanged()) {
