@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.4...v2.2.0) (2025-02-17)
+
+
+### Features
+
+* astro support ([1c0144d](https://github.com/hemengke1997/vite-plugin-prerelease/commit/1c0144d7e53bc12787f5fd5e9d6a63d6611ca329))
+
+
+
 ## [2.1.4](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.3...v2.1.4) (2025-02-14)
 
 
