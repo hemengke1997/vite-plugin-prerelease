@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.2.0...v2.2.1) (2025-02-17)
+
+
+### Bug Fixes
+
+* windows path ([7a84a25](https://github.com/hemengke1997/vite-plugin-prerelease/commit/7a84a25c28d4fb0a68c53f241097301e0231c66a))
+
+
+
 # [2.2.0](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.1.4...v2.2.0) (2025-02-17)
 
 
