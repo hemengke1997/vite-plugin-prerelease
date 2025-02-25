@@ -1,6 +1,6 @@
+import { reactdomRender } from './dom/react-render'
 import { Prelease_Widget_Id } from '.'
 import Context, { type ContextType } from './context'
-import { reactdomRender } from './dom/react-render'
 import { PrereleaseWidget } from './prerelease'
 
 export function render({

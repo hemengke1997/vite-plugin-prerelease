@@ -1,4 +1,4 @@
-import { type ReactElement } from 'react'
+import { type ReactElement, startTransition } from 'react'
 import { flushSync } from 'react-dom'
 import ReactDOM, { type Root } from 'react-dom/client'
 
@@ -18,11 +18,12 @@ export function reactdomRender(
     sync?: boolean
   },
 ) {
-  const render = () => {
-    const root = container[MARK] || ReactDOM.createRoot(container)
-    root.render(node)
-    container[MARK] = root
-  }
+  const render = () =>
+    startTransition(() => {
+      const root = container[MARK] || ReactDOM.createRoot(container)
+      root.render(node)
+      container[MARK] = root
+    })
 
   if (sync) {
     Promise.resolve().then(() => flushSync(render))

@@ -15,6 +15,7 @@
     "@remix-run/node": "^2.15.3",
     "@remix-run/react": "^2.15.3",
     "@remix-run/serve": "^2.15.3",
+    "antd": "^5.23.4",
     "isbot": "^4.4.0",
     "react": "18.3.1",
     "react-dom": "18.3.1"

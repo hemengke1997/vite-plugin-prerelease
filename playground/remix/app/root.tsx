@@ -1,5 +1,5 @@
-import { type LoaderFunctionArgs } from '@remix-run/node'
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
+import { type LoaderFunctionArgs } from '@remix-run/node'
 import { server } from 'vite-plugin-prerelease/server'
 import './tailwind.css'
 

@@ -56,7 +56,6 @@ declare global {
     Cookies: typeof import('js-cookie')
   }
 
-  // eslint-disable-next-line no-var, vars-on-top
   var __env__: ReturnType<typeof resolveEnvFromConfig>
 }
 
@@ -122,7 +121,7 @@ export async function prerelease(options?: Options): Promise<any> {
     },
     transform: {
       order: 'pre',
-      handler(code, id) {
+      handler(code, id, options) {
         if (!entryFile) return
 
         let isEntry = false
@@ -134,7 +133,7 @@ export async function prerelease(options?: Options): Promise<any> {
           isEntry = true
         }
 
-        if (isEntry) {
+        if (isEntry && !options?.ssr) {
           return {
             code: `import '${runtimeId}';
             ${code}
@@ -172,8 +171,9 @@ export async function prerelease(options?: Options): Promise<any> {
 
               setTimeout(() => {
                 new PrereleaseWidget(${serialize(prereleaseWidget)})
-              }, 60);
+              }, 200);
             }
+            
           `,
             map: null,
           }
