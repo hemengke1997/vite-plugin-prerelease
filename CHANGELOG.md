@@ -1,3 +1,12 @@
+## [2.2.2](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.2.1...v2.2.2) (2025-02-25)
+
+
+### Bug Fixes
+
+* ssr ([1526139](https://github.com/hemengke1997/vite-plugin-prerelease/commit/152613952bdac1ffdb7375aa8fdd9b67ed03b975))
+
+
+
 ## [2.2.1](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.2.0...v2.2.1) (2025-02-17)
 
 

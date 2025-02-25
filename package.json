@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-prerelease",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "packageManager": "pnpm@9.15.2",
   "description": "vite plugin prerelease",
   "type": "module",
