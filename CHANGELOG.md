@@ -1,3 +1,12 @@
+## [2.2.3](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.2.2...v2.2.3) (2025-02-26)
+
+
+### Bug Fixes
+
+* non react app support ([7bda65c](https://github.com/hemengke1997/vite-plugin-prerelease/commit/7bda65c08b7dde5c86f9849623de29dea611050f))
+
+
+
 ## [2.2.2](https://github.com/hemengke1997/vite-plugin-prerelease/compare/v2.2.1...v2.2.2) (2025-02-25)
 
 
