@@ -7,7 +7,7 @@ export default defineConfig((env) => {
   return preset(
     {
       env,
-      base: '/vite-plugin-prerelease/',
+      base: '/vite-plugin-prerelease-react/',
       plugins: [prerelease()],
     },
     {

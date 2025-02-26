@@ -153,6 +153,7 @@ export async function prerelease(options?: Options): Promise<any> {
       switch (id) {
         case resolvedVirtualModuleId(runtimeId): {
           const jsCookie = await resolveJsCookie()
+
           return {
             code: /*js*/ `
             import { PrereleaseWidget, clientApi } from 'vite-plugin-prerelease/client'
@@ -171,7 +172,7 @@ export async function prerelease(options?: Options): Promise<any> {
 
               setTimeout(() => {
                 new PrereleaseWidget(${serialize(prereleaseWidget)})
-              }, 200);
+              }, 200)
             }
             
           `,

@@ -1,6 +1,6 @@
 import React from 'react'
-import { ConfigProvider, theme } from 'antd'
 import ReactDOM from 'react-dom/client'
+import { ConfigProvider, theme } from 'antd'
 import App from './App'
 import './index.css'
 
