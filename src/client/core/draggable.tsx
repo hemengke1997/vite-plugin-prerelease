@@ -1,7 +1,7 @@
 import { useDraggable } from '@neodrag/react'
 import { type PropsWithChildren, useEffect, useRef } from 'react'
 import { useLocalStorageState, useMemoizedFn } from 'ahooks'
-import { max } from 'lodash-es'
+import { max } from 'es-toolkit/compat'
 import { classNames } from 'tw-clsx'
 import { Prelease_Widget_Id } from '.'
 import Context from './context'

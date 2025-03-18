@@ -1,8 +1,10 @@
 import { type AstroIntegration } from 'astro'
 import { prerelease as main, type Options } from '..'
 
-export function prerelease(options?: Pick<Options, 'excludeEnvs' | 'prereleaseEnv' | 'prereleaseWidget'>): any {
-  const { prereleaseEnv = 'production' } = options || {}
+export function prerelease(
+  options?: Pick<Options, 'excludeEnvs' | 'prereleaseEnv' | 'prereleaseWidget' | 'enable'>,
+): any {
+  const { enable } = options || {}
   return {
     name: 'vite-plugin-prerelease-integration',
     hooks: {
@@ -19,7 +21,7 @@ export function prerelease(options?: Pick<Options, 'excludeEnvs' | 'prereleaseEn
           },
         })
 
-        if (process.env.NODE_ENV === prereleaseEnv || process.env.NODE_ENV === 'production') {
+        if (!enable) {
           return
         }
         injectScript('page', '')

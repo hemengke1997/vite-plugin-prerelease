@@ -8,6 +8,12 @@ import { id, resolvedVirtualModuleId, runtimeId, vmods } from './virtual'
 
 export type Options = {
   /**
+   * @description 是否启用预发布
+   * @default false
+   */
+  enable?: boolean
+
+  /**
    * 预发布插件类型
    * @default 'runtime'
    * @description
@@ -61,6 +67,7 @@ declare global {
 
 export async function prerelease(options?: Options): Promise<any> {
   const {
+    enable = false,
     mode = 'runtime',
     excludeEnvs = [],
     prereleaseEnv = 'production',
@@ -69,7 +76,7 @@ export async function prerelease(options?: Options): Promise<any> {
     __debug = false,
   } = options || {}
 
-  if (process.env.NODE_ENV === prereleaseEnv || process.env.NODE_ENV === 'production') {
+  if (!enable) {
     return
   }
 
@@ -174,7 +181,6 @@ export async function prerelease(options?: Options): Promise<any> {
                 new PrereleaseWidget(${serialize(prereleaseWidget)})
               }, 200)
             }
-            
           `,
             map: null,
           }

@@ -1,4 +1,5 @@
-import { isObject, merge } from 'lodash-es'
+import { merge } from 'es-toolkit'
+import { isObject } from 'es-toolkit/compat'
 import { type ContextType } from './context'
 import { render } from './render'
 import { type PrereleaseWidgetOptions } from './types'
